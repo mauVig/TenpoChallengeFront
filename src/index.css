@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-myGreen: oklch(87.7% 0.234 145.8);
+    --color-myBlack: oklch(10.7% 0.002 30.3)
+}
