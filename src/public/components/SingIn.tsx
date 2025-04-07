@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { LOCAL_STORAGE } from "../constants/publicConstants"
+import { useToast } from "../hooks/useToast"
 
 interface RegisterProps {
     toggle: () => void;
@@ -7,6 +9,14 @@ interface RegisterProps {
 export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
      const [email, setEmail] = useState<string>("")
      const [password, setPassword] = useState<string>("")
+     const { getInAdvise } = useToast()
+
+    const getIn = () => {
+        if(!localStorage.getItem(LOCAL_STORAGE)){
+            // toggle()
+            getInAdvise()
+        }
+    }
 
     return(
         <section className="min-h-[600px] min-w-[300px] border-myGreen border-2 shadow-[-3px_5px_90px_-7px_#52fd6d] rounded-lg flex flex-col items-center justify-center ">
@@ -56,7 +66,7 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4 w-full mt-14">
-                <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer">Ingresar</button>
+                <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer" onClick={getIn}>Ingresar</button>
                 <button className="bg-myGray text-green-300 transition-all duration-300 rounded-lg px-4 py-2 cursor-pointer" onClick={()=>toggle()}>Registrarse</button>
             </div>
     </section>
