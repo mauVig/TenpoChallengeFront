@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import toast from "react-hot-toast";
 
 
 interface RegisterProps {
@@ -9,6 +10,37 @@ export const Register: React.FC<RegisterProps> = ({ toggle }) => {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string | number>("")
     const [copyPass, setCopyPass] = useState<string | number>('')
+
+    const registerAcount = () => {
+        if ( !email.includes('@')) {
+            toast.error('Email no valido')
+            return
+        }
+        if (typeof password === 'string' && password.length < 8) {
+            toast.error('La contraseña debe tener al menos 8 caracteres')
+            return
+        }
+        if (password !== copyPass) {
+            toast.error('Las contraseñas no coinciden')
+            return
+        }
+        if (email && password && copyPass) {
+            const user = { email, password }
+            localStorage.setItem('userLogin', JSON.stringify(user))
+            toast.success('Usuario registrado')
+            setEmail('')
+            setPassword('')
+            setCopyPass('')
+            toggle()
+        }
+        if (localStorage.getItem('userLogin')) {
+            toast.error('Ya existe una cuenta con ese email')
+            setEmail('')
+            setPassword('')
+            setCopyPass('')
+        }
+    }
+
     
        return(
            <section className="min-h-[600px] min-w-[300px] border-myGreen border-2 shadow-[-3px_5px_90px_-7px_#52fd6d] rounded-lg flex flex-col items-center justify-center ">
@@ -58,7 +90,7 @@ export const Register: React.FC<RegisterProps> = ({ toggle }) => {
                
                <div className="[--clr:#1f1f1f] dark:[--clr:#999999] relative flex flex-row items-center mb-4">
                    <input
-                       name="password"
+                       name="passwordCopy"
                        required
                        aria-invalid="false"
                        placeholder=""
@@ -67,7 +99,7 @@ export const Register: React.FC<RegisterProps> = ({ toggle }) => {
                        id="password"
                        type="password"
                        defaultValue={copyPass}
-                    onChange={(e) => setCopyPass(e.target.value)}
+                        onChange={(e) => setCopyPass(e.target.value)}
                        className="peer text-black dark:text-white pl-2 h-[40px] min-h-[40px] pr-[40px] leading-normal appearance-none resize-none box-border text-base w-full  block text-left border border-solid bg-white dark:bg-zinc-800 rounded-[10px] m-0 p-0 outline-0 focus-visible:outline-0 focus-visible:border-myGreen focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#71717a2e] dark:focus-visible:ring-[#14b8a61a]"
                    />
                    <label
@@ -79,7 +111,7 @@ export const Register: React.FC<RegisterProps> = ({ toggle }) => {
                </div>
    
                <div className="flex flex-col items-center justify-center gap-4 w-full mt-14">
-                   <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer">Registrarse</button>
+                   <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer" onClick={registerAcount}>Registrarse</button>
                    <button className="bg-myGray text-green-300  rounded-lg px-4 py-2 cursor-pointer" onClick={()=>toggle()}>¿ Ya tenes una cuenta ?</button>
                </div>
        </section>

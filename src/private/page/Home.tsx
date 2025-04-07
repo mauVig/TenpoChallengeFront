@@ -1,7 +1,30 @@
+import { useEffect } from 'react'
 import { GamesContainers } from '../components/homeGames/GamesContainers'
 import NavBar from '../components/NavBar'
+import {useGlobalStore} from '../../store/globalStore'
+import toast from 'react-hot-toast'
+import { useNavigate } from "react-router";
+
 
 export const Home: React.FC = () => {
+    const { isLogin } = useGlobalStore(state => state)
+    const navigate = useNavigate()
+
+
+    useEffect(() => {
+        if (!isLogin) {
+            toast.error('Debes iniciar sesion para acceder a esta pagina', {
+                position: 'top-center',
+                duration: 2000,
+                style: {
+                    background: '#1B1B1B',
+                    color: '#fff',
+                },
+            })
+            navigate('/')
+        }
+    }, [isLogin])
+
     
     return (
         <div className='w-full min-h-screen bg-myBlack text-gray-300'>

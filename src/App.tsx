@@ -6,12 +6,13 @@ const App: React.FC = () => {
   return (
       <>
         <Toaster
-          toastOption={{
+          toastOptions={{
             style: {
               border: '1px solid #713200',
               padding: '16px',
-              color: '#713200',
-              back
+              color: '#1B1B1B',
+              background: '#6AFF99',
+              
             },
           }}
         />

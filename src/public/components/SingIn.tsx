@@ -1,20 +1,41 @@
 import { useState } from "react"
+import { useGlobalStore } from "../../store/globalStore"
 import { LOCAL_STORAGE } from "../constants/publicConstants"
-import { useToast } from "../hooks/useToast"
+import { useNavigate } from "react-router";
+
+import toast from "react-hot-toast";
 
 interface RegisterProps {
     toggle: () => void;
 }
 
 export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
-     const [email, setEmail] = useState<string>("")
-     const [password, setPassword] = useState<string>("")
-     const { getInAdvise } = useToast()
-
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const navigate = useNavigate()
+    const { userGetInSuccess } = useGlobalStore()
+    
     const getIn = () => {
         if(!localStorage.getItem(LOCAL_STORAGE)){
-            // toggle()
-            getInAdvise()
+            toast('Primero create una cuenta !')
+            toggle()
+            return
+        }
+        const user = JSON.parse(localStorage.getItem(LOCAL_STORAGE) || '')
+        if (user.email !== email) {
+            toast.error('Email incorrecto')
+            return
+        }
+        if (user.password !== password) {
+            toast.error('Contraseña incorrecta')
+            return
+        }
+        if (user.email === email && user.password === password) {
+            userGetInSuccess()
+            toast.success(`Hola ${user.email} te extrañabamos`)
+            setEmail('')
+            setPassword('')
+            navigate('/home')
         }
     }
 
