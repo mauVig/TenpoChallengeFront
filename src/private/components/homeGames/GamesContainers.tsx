@@ -38,11 +38,9 @@ export const GamesContainers: React.FC = () => {
       {data.map((game, index) => (
         <GameComponent key={index} game={game} />
       ))}
-      {hasReachedBottom && (
-        <div className="col-span-full text-center py-4 text-gray-500">
+        <div className="col-span-full text-center py-4 text-gray-500 mt-12">
           No hay más juegos
         </div>
-      )}
     </div>
   );
 };

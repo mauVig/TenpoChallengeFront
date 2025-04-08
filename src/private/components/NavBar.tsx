@@ -1,14 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useGlobalStore } from '../../store/globalStore';
+import toast from 'react-hot-toast';
 
 export const NavBar: React.FC = () => {
+    const { userEmail, logOut } = useGlobalStore((state) => state)
+    const navigate = useNavigate()
+
+    const closeOut = () => {
+        toast(`Se cerró la sesion de ${userEmail}`)
+        logOut()
+        navigate('/')
+    }   
+
     return (
-        <div className='w-full h-12 bg-myBlack flex items-center justify-between px-4 border-b-2 border-myGreen rounded-2xl'>
+        <div className='w-full h-12 bg-myBlack flex items-center justify-between px-4 border-b-2 border-green-300 rounded-b-2xl relative z-40'>
             <svg
                 fill="#000000"
                 viewBox="0 0 1024 1024"
                 xmlns="http://www.w3.org/2000/svg"
                 className='w-12 h-12'
-                style={{ fill: '#d1d5dc '}}
+                style={{ fill: '#d1d5dc'}}
             >
                 <path d="M798.071 357.531c-16.527 24.259-51.62 24.259-68.147 0-9.185-13.476-9.185-32.01 0-45.486 16.527-24.259 51.62-24.259 68.147 0 9.185 13.476 9.185 32.01 0 45.486zm93.628 92.093c-16.527 24.259-51.62 24.259-68.147 0-9.185-13.476-9.185-32.01 0-45.486 16.527-24.259 51.62-24.259 68.147 0 9.185 13.476 9.185 32.01 0 45.486zm-189.305 0c-16.527 24.259-51.62 24.259-68.147 0-9.185-13.476-9.185-32.01 0-45.486 16.527-24.259 51.62-24.259 68.147 0 9.185 13.476 9.185 32.01 0 45.486zm95.677 95.164c-16.527 24.259-51.62 24.259-68.147 0-9.185-13.476-9.185-32.01 0-45.486 16.527-24.259 51.62-24.259 68.147 0 9.185 13.476 9.185 32.01 0 45.486zM360.192 428.417c0-53.017-42.983-96-96-96s-96 42.983-96 96 42.983 96 96 96 96-42.983 96-96zm40.96 0c0 75.638-61.322 136.96-136.96 136.96s-136.96-61.322-136.96-136.96 61.322-136.96 136.96-136.96 136.96 61.322 136.96 136.96z" />
                 <path d="M983.038 727.533c-.352 61.995-50.737 112.151-112.843 112.151-39.998 0-76.347-20.949-96.661-54.546-5.852-9.679-18.443-12.782-28.122-6.929s-12.782 18.443-6.929 28.122c27.659 45.746 77.229 74.314 131.712 74.314 84.943 0 153.805-68.844 153.805-153.764l-1.254-19.506-40.634-281.277c-23.484-162.304-162.639-282.733-326.691-282.733H467.343c-11.311 0-20.48 9.169-20.48 20.48s9.169 20.48 20.48 20.48h188.078c143.699 0 265.584 105.483 286.153 247.638l40.355 278.923 1.109 16.649z" />
@@ -16,9 +28,8 @@ export const NavBar: React.FC = () => {
                 <path d="M512.096 646.745c-103.937 0-199.44 50.429-258.465 133.562-6.548 9.223-4.38 22.007 4.843 28.555s22.007 4.38 28.555-4.843c51.423-72.425 134.541-116.315 225.067-116.315 11.311 0 20.48-9.169 20.48-20.48s-9.169-20.48-20.48-20.48z" />
             </svg>
             <div className='flex items-center space-x-4'>
-                <a href="#" className='text-gray-300 hover:text-white'>Home</a>
-                <a href="#" className='text-gray-300 hover:text-white'>About</a>
-                <a href="#" className='text-gray-300 hover:text-white'>Contact</a>
+                <span>{userEmail}</span>
+                <button className='bg-green-300 hover:bg-green-400 active:bg-green-500 hover:cursor-pointer text-myBlack px-4 py-0.5 rounded-xl' onClick={closeOut}>Cerrar sesion</button>
             </div>
         </div>
     )

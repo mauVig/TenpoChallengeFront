@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import { API_URL, API_URL_MORE } from "../constants/privateConstants";
+
 
 interface HomeData {
     homeData: {
@@ -15,7 +17,7 @@ export const useReadApi = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            axios.get('http://localhost:3000/start')
+            axios.get(API_URL)
             .then((response) => {
                 // if (response.headers['token']) { 
 
@@ -36,7 +38,7 @@ export const useReadApi = () => {
     },[])
 
     const getMoreData = async () => {
-        axios.get(`http://localhost:3000/more?lastIndex=${lastIndex}`)
+        axios.get(`${API_URL_MORE}?lastIndex=${lastIndex}`)
         .then((response) => {
             setData(prevData => [...prevData, ...response.data.homeData])
             setLastIndex(response.data.myIndex)

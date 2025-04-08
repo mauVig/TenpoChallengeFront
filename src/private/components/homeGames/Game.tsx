@@ -37,7 +37,7 @@ export const Game: React.FC<GameProps> = memo(({ game }) => {
           <span className='truncate'>Ver mas</span>
         </div>
       </div>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden rounded-lg">
         <img
           src={thumbnail}
           alt={title}

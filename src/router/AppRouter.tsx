@@ -6,13 +6,11 @@ import { Routes, Route } from 'react-router-dom';
 export const AppRouter = () => {    
     return (
         <>
-            <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/home' element={<Home />} />
-                
-            </Routes>
+        <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/home' element={<Home />} />
+        </Routes>
             {/* <Home /> */}
-            <Login />
         </>
     )
 }

@@ -21,7 +21,7 @@ export const Login: React.FC = () => {
                 initial={{ opacity: 0, x: 90 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.6 }}
               >
                 <Register toggle={toggleLogOrRegister}/>
               </motion.div>
@@ -31,7 +31,7 @@ export const Login: React.FC = () => {
                 initial={{ opacity: 0, x: -90 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.6 }}
               >
                 <SingIn  toggle={toggleLogOrRegister}/>
               </motion.div>
