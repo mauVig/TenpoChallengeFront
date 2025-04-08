@@ -83,7 +83,7 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
                     className="peer text-black dark:text-white pl-2 h-[40px] min-h-[40px] pr-[40px] leading-normal appearance-none resize-none box-border text-base w-full  block text-left border border-solid bg-white dark:bg-zinc-800 rounded-[10px] m-0 p-0 outline-0 focus-visible:outline-0 focus-visible:border-green-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#71717a2e] dark:focus-visible:ring-[#14b8a61a]"
                 />
                 <div className="absolute right-2 cursor-pointer" onClick={() => setEyesPass(!eyesPass)}>
-                    {eyesPass ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                    {!eyesPass ? <HiOutlineEyeOff /> : <HiOutlineEye />}
                 </div>
                 <label
                     className="cursor-text  inline-block z-0 text-sm mb-px font-normal text-start select-none absolute duration-300 transform origin-[0] translate-x-[12px] peer-focus-visible:text-green-300 peer-focus-visible:translate-x-[8px] peer-[:not(:placeholder-shown)]:translate-x-[8px] peer-focus-visible:translate-y-[-36px] peer-[:not(:placeholder-shown)]:translate-y-[-36px] peer-[:not(:placeholder-shown)]:text-[-36px]"

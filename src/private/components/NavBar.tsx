@@ -15,8 +15,8 @@ export const NavBar: React.FC = () => {
 
     const closeOut = () => {
         toast(`Se cerró la sesion de ${userEmail}`)
-        logOut()
         navigate('/')
+        logOut()
     }   
 
     return (

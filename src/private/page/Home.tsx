@@ -3,7 +3,6 @@ import { GamesContainers } from '../components/homeGames/GamesContainers';
 import { useGlobalStore } from '../../store/globalStore';
 import { useNavigate } from "react-router";
 import NavBar from '../components/NavBar';
-import toast from 'react-hot-toast';
 import { motion, useAnimation } from 'framer-motion';
 
 /* En este componente podemos encontrar que primero hay una verificación si estás logeado o no, haciendo una verificación en el global store y si no es así te traslada a la página de login. Luego están las configuraciones para el efecto fade in para el título y el párrafo. Y por último podemos encontrar el componente que contiene a los datos de los juegos  */
@@ -18,14 +17,6 @@ export const Home: React.FC = () => {
 
   useEffect(() => {
     if (!isLogin) {
-      toast.error('Debes iniciar sesion para acceder a esta pagina', {
-        position: 'top-center',
-        duration: 2000,
-        style: {
-          background: '#1B1B1B',
-          color: '#fff',
-        },
-      });
       navigate('/');
     }
   }, [isLogin, navigate]);

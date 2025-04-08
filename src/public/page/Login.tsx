@@ -1,18 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SingIn from "../components/SingIn";
 import Register from "../components/Register";
 import { motion, AnimatePresence } from "framer-motion";
+import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Login: React.FC = () => {
   const [LogOrRegister, setLogOrRegister] = useState<boolean>(false);
-
+  const { err } = useParams<{ err: string }>();
   const toggleLogOrRegister = () => {
     setLogOrRegister(!LogOrRegister);
   };
 
-  // Acá utilicé primero la etiqueta aside para que no se indexe en Google, aunque la librería react no a indexar en Google pero sí hay herramientas de SEO  para poder lograrlo.  
-  // Luego también utilice la librería frame motion para generar un efecto entre el componente SingIn y Register.  
-  // La función toggleLogOrRegister sirve como collback para ir mostrando de a uno los 2 componentes.
+  useEffect(() => {
+    if ( err ){
+      toast.error('Debes iniciar sesion para acceder a esta pagina', {
+        position: 'top-center',
+        duration: 2000,
+        style: {
+          background: '#1B1B1B',
+          color: '#fff',
+        },
+      });
+    }
+  }, []);
+
+
+
+
+ /* Acá utilicé primero la etiqueta aside para que no se indexe en Google, aunque la librería react no a indexar en Google pero sí hay herramientas de SEO  para poder lograrlo.  
+  Luego también utilice la librería frame motion para generar un efecto entre el componente SingIn y Register.  
+   La función toggleLogOrRegister sirve como collback para ir mostrando de a uno los 2 componentes. */
   
   return (
     <aside className="w-full h-screen flex items-center justify-center bg-myBlack text-gray-300">
