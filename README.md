@@ -1,54 +1,31 @@
-# React + TypeScript + Vite
+# Repositorio Front end 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cómo pueden observar este proyecto está dividido en dos, y este es el front end de todo el proyecto. Acá les voy a indicar paso por paso qué es lo que tienen que hacer para poder ver el proyecto sin ningún inconveniente.
 
-Currently, two official plugins are available:
+ 
+-1 Primer paso 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Estar ubicado en el directorio en el cual se descargó este repositorio. 
+# ../TenpoChallengeFront
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-2 Segundo paso 
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Escribir el siguiente comando en la terminal del editor de texto o en la terminal directamente 
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# npm install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+-3 Tercer paso 
+
+Escribir el siguiente comando en la terminal del editor de texto o en la terminal directamente 
+
+# npm run dev 
+
+
+-4 Cuarto paso 
+
+Puedes hacer Clic en donde dice http://localhost:5173/ o también puedes escribir esta dirección en el browser que tengas en tu computadora (Chrome, firefox, safari, Ópera, etc) 
+ 
+# http://localhost:5173/ 
+

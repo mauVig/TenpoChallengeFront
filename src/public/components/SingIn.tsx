@@ -2,8 +2,10 @@ import { useState } from "react"
 import { useGlobalStore } from "../../store/globalStore"
 import { LOCAL_STORAGE } from "../constants/publicConstants"
 import { useNavigate } from "react-router";
-
+import { HiOutlineEye, HiOutlineEyeOff  } from "react-icons/hi";
 import toast from "react-hot-toast";
+
+// En este componente verificamos si el email y el password es el mismo que está registrado en LocalStorage Y si coinciden se podrá ingresar a la aplicación 
 
 interface RegisterProps {
     toggle: () => void;
@@ -12,8 +14,9 @@ interface RegisterProps {
 export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
-    const navigate = useNavigate()
+    const [eyesPass, setEyesPass] = useState<boolean>(false)
     const { userGetInSuccess, setUserEmail } = useGlobalStore()
+    const navigate = useNavigate()
     
     const getIn = () => {
         if(!localStorage.getItem(LOCAL_STORAGE)){
@@ -74,11 +77,14 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
                     spellCheck="false"
                     autoComplete="off"
                     id="password"
-                    type="password"
+                    type={eyesPass ? "text" : "password"}
                     defaultValue={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="peer text-black dark:text-white pl-2 h-[40px] min-h-[40px] pr-[40px] leading-normal appearance-none resize-none box-border text-base w-full  block text-left border border-solid bg-white dark:bg-zinc-800 rounded-[10px] m-0 p-0 outline-0 focus-visible:outline-0 focus-visible:border-green-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#71717a2e] dark:focus-visible:ring-[#14b8a61a]"
                 />
+                <div className="absolute right-2 cursor-pointer" onClick={() => setEyesPass(!eyesPass)}>
+                    {eyesPass ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+                </div>
                 <label
                     className="cursor-text  inline-block z-0 text-sm mb-px font-normal text-start select-none absolute duration-300 transform origin-[0] translate-x-[12px] peer-focus-visible:text-green-300 peer-focus-visible:translate-x-[8px] peer-[:not(:placeholder-shown)]:translate-x-[8px] peer-focus-visible:translate-y-[-36px] peer-[:not(:placeholder-shown)]:translate-y-[-36px] peer-[:not(:placeholder-shown)]:text-[-36px]"
                     htmlFor="email"

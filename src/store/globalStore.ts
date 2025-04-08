@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+// Decidí usar zustand como manejo principal del store para solamente el login  
+
 interface store {
     isLogin: boolean,
     userEmail: string,
