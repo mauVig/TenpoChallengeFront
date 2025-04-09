@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-// Decidí usar zustand como manejo principal del store para solamente el login  
+// Decidí usar zustand como manejo principal del store para solamente manegar los datos del login  
 
 interface store {
     isLogin: boolean,

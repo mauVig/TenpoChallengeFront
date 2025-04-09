@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const useScrollDirection = () => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
-  const [prevScroll, setPrevScroll] = useState(0);
-  const [isAtTop, setIsAtTop] = useState(true);
+  const [prevScroll, setPrevScroll] = useState<number>(0);
+  const [isAtTop, setIsAtTop] = useState<boolean>(true);
 
   useEffect(() => {
     const handleScroll = () => {

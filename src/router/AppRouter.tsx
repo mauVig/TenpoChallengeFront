@@ -7,14 +7,11 @@ import { Routes, Route } from 'react-router-dom';
 
 export const AppRouter = () => {    
     return (
-        <>
-            <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/home' element={<Home />} />
-                <Route path='/changePass' element={<ChangePass />} />
-            </Routes>
-            {/* <ChangePass /> */}
-        </>
+        <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/changePass' element={<ChangePass />} />
+        </Routes>
     )
 }
 export default AppRouter

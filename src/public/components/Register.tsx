@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import toast from "react-hot-toast";
-import { HiOutlineEye, HiOutlineEyeOff  } from "react-icons/hi";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { LOCAL_STORAGE } from "../constants/publicConstants";
 
-/* En este componente se obtienen el email con el cual el usuario quiere registrarse en la aplicación y la contraseña que también se pide a repetir la contraseña para más seguridad. Como pueden observar también está la opción de poder ver la contraseña a través del icono del ojo. También están las validaciones necesarias como validar que el email sea un email que ambos password sean iguales, y en este caso como no usamos base de datos lo que estoy haciendo es registrar estos datos en LocalStorage, por ende hago una pequeña validación si ya han creado un usuario.  */
+/* En este componente se obtienen el email y contraseña con el cual el usuario quiere registrarse en la aplicación. Como pueden observar también está la opción de poder ver la contraseña a través del icono del ojo. También están las validaciones necesarias como validar que el email sea un email que ambos password sean iguales y si también aceptan los términos y condiciones. En este caso como no usamos base de datos lo que estoy haciendo es registrar estos datos en LocalStorage, por ende hago una pequeña validación si ya han creado un usuario.  */
 
 interface RegisterProps {
     toggle: () => void;
@@ -130,14 +130,14 @@ export const Register: React.FC<RegisterProps> = ({ toggle }) => {
                     Copiar contraseña
                 </label>
             </div>
-            <div className="flex items-center justify-center gap-2.5 mb-4 w-full px-4 mt-2">
+            <div className="flex items-center justify-center gap-2.5 mb-4 w-full px-4 mt-2 hover:cursor-pointer">
                 <label
                     htmlFor="hr"
                     className="flex justify-start items-center gap-2.5 dark:text-white light:text-black"
                 >
                 <input id="hr" type="checkbox" className="peer hidden" onChange={() => setCheeck(!cheeck)}/>
                 <div
-                    className="h-5 w-5 flex rounded-md border border-[#a2a1a833] light:bg-[#e8e8e8] dark:bg-[#212121] peer-checked:bg-green-300 transition"
+                    className="h-5 w-5 flex rounded-md border border-[#a2a1a833] light:bg-[#e8e8e8] dark:bg-[#212121] peer-checked:bg-green-300 transition hover:cursor-pointer"
                 >
                     <svg
                         fill="none"
@@ -153,7 +153,7 @@ export const Register: React.FC<RegisterProps> = ({ toggle }) => {
                     ></path>
                     </svg>
                 </div>
-                <span className="text-[10px]">He leido y acepto los <span className="text-green-300">Terminos y Condiciones</span></span>
+                <span className="text-[10px] hover:cursor-pointer">He leído y acepto los <span className="text-green-300">Terminos y Condiciones</span></span>
                 </label>
             </div>
             <div className="flex flex-col items-center justify-center gap-4 w-full mt-14">

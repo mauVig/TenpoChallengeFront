@@ -4,6 +4,8 @@ import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion";
 
+//  En este componente te brinda la posibilidad de hacer el cambio de contraseña de tu cuenta.
+
 interface userData {
     email: string,
     password: string
@@ -23,9 +25,7 @@ export const ChangePass: React.FC = () => {
         }
     }, [])
     
-    const hanlerChangePass = () => {    
-        // Aquí puedes agregar la lógica para manejar el cambio de contraseña
-        
+    const hanlerChangePass = () => {            
         const user:userData = JSON.parse(localStorage.getItem(LOCAL_STORAGE) || '{}')
 
         if (user.password !== lastPass) {

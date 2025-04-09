@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { HiOutlineEye, HiOutlineEyeOff  } from "react-icons/hi";
 import toast from "react-hot-toast";
 
-// En este componente verificamos si el email y el password es el mismo que está registrado en LocalStorage Y si coinciden se podrá ingresar a la aplicación 
+// En este componente verificamos si el email y el password es el mismo que está registrado en LocalStorage Y si coinciden se podrá ingresar a la aplicación. También está la opción de poder cambiar la contraseña 
 
 interface RegisterProps {
     toggle: () => void;
@@ -21,7 +21,6 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
     const getIn = () => {
         if(!localStorage.getItem(LOCAL_STORAGE)){
             toast.error('Primero create una cuenta !')
-            toggle()
             return
         }
         const user = JSON.parse(localStorage.getItem(LOCAL_STORAGE) || '')
@@ -112,7 +111,7 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
                 <button className="text-sm text-gray-400 mt-2 hover:cursor-pointer" onClick={handleChange}>Olvidaste tu contraseña? <br /> Hace click <span className="text-green-300">aquí</span> </button>
             </div>
             <div className="flex flex-col items-center justify-center gap-4 w-full mt-14">
-                <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer" onClick={getIn} >Ingresar</button>
+                <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer" onClick={getIn}>Ingresar</button>
                 <button className="bg-myGray text-green-300 transition-all duration-300 rounded-lg px-4 py-2 cursor-pointer" onClick={()=>toggle()}>Registrarse</button>
             </div>
     </section>
