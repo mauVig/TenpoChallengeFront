@@ -20,7 +20,7 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
     
     const getIn = () => {
         if(!localStorage.getItem(LOCAL_STORAGE)){
-            toast('Primero create una cuenta !')
+            toast.error('Primero create una cuenta !')
             toggle()
             return
         }
@@ -36,13 +36,26 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
         if (user.email === email && user.password === password) {
             setUserEmail(email)
             userGetInSuccess()
-            toast.success(`Hola ${user.email} te extrañabamos !`)
+            toast.success(`Hola ${user.email} te extrañábamos !`)
             setEmail('')
             setPassword('')
             navigate('/home')
         }
     }
 
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            getIn()
+        }
+    }
+    
+    const handleChange = () => {
+        if(!localStorage.getItem(LOCAL_STORAGE)){
+            toast.error('Necesitas tener una cuenta')
+            return
+        }
+        navigate('/changePass')
+    }
     return(
         <section className="min-h-[600px] min-w-[300px] border-green-300 border-2 shadow-[-3px_5px_90px_-7px_#52fd6d] rounded-lg flex flex-col items-center justify-center ">
            <h2 className="text-5xl mb-24">Ingresar</h2>
@@ -58,6 +71,8 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
                     type="email"
                     defaultValue={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={handleKeyDown}
+
                     className="peer text-black dark:text-white pl-2 h-[40px] min-h-[40px] pr-[40px] leading-normal appearance-none resize-none box-border text-base w-full  block text-left border border-solid bg-white dark:bg-zinc-800 rounded-[10px] m-0 p-0 outline-0 focus-visible:outline-0 focus-visible:border-green-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#71717a2e] dark:focus-visible:ring-[#14b8a61a]"
                 />
                 <label
@@ -80,6 +95,7 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
                     type={eyesPass ? "text" : "password"}
                     defaultValue={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     className="peer text-black dark:text-white pl-2 h-[40px] min-h-[40px] pr-[40px] leading-normal appearance-none resize-none box-border text-base w-full  block text-left border border-solid bg-white dark:bg-zinc-800 rounded-[10px] m-0 p-0 outline-0 focus-visible:outline-0 focus-visible:border-green-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#71717a2e] dark:focus-visible:ring-[#14b8a61a]"
                 />
                 <div className="absolute right-2 cursor-pointer" onClick={() => setEyesPass(!eyesPass)}>
@@ -92,9 +108,11 @@ export const SingIn: React.FC<RegisterProps> = ({ toggle }) => {
                     Contraseña
                 </label>
             </div>
-
+            <div>
+                <button className="text-sm text-gray-400 mt-2 hover:cursor-pointer" onClick={handleChange}>Olvidaste tu contraseña? <br /> Hace click <span className="text-green-300">aquí</span> </button>
+            </div>
             <div className="flex flex-col items-center justify-center gap-4 w-full mt-14">
-                <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer" onClick={getIn}>Ingresar</button>
+                <button className="bg-green-300 hover:bg-green-400 active:bg-green-500 transition-all duration-300 text-myBlack rounded-lg py-2 block w-1/2 cursor-pointer" onClick={getIn} >Ingresar</button>
                 <button className="bg-myGray text-green-300 transition-all duration-300 rounded-lg px-4 py-2 cursor-pointer" onClick={()=>toggle()}>Registrarse</button>
             </div>
     </section>

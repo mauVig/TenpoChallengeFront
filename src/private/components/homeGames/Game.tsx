@@ -66,7 +66,7 @@ export const Game: React.FC<GameProps> = memo(({ game }) => {
       className="relative flex flex-col cursor-pointer group z"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 20 }} 
+      initial={{ opacity: 0, y: 25 }} 
       animate={controls}
     >
       <div className="order-2 flex justify-between mt-1">
@@ -75,7 +75,7 @@ export const Game: React.FC<GameProps> = memo(({ game }) => {
           href={freetogame_profile_url}
           target="_blank"
           rel="noopener noreferrer"
-          className='2xl:hidden w-[30%] flex items-center justify-end gap-x-1'>
+          className='lg:hidden w-[30%] flex items-center justify-end gap-x-1'>
           <span className='truncate'>Ver mas</span>
           <GoArrowUpRight size={20} />
         </a>
@@ -91,7 +91,7 @@ export const Game: React.FC<GameProps> = memo(({ game }) => {
           href={freetogame_profile_url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`hidden 2xl:flex absolute bottom-0 left-0 right-0 h-[90%]  items-end justify-center bg-gradient-to-t from-gray-300 transition-opacity duration-300 ${
+          className={`hidden lg:flex absolute bottom-0 left-0 right-0 h-[90%]  items-end justify-center bg-gradient-to-t from-gray-300 transition-opacity duration-300 ${
             isHovering ? 'opacity-100' : 'opacity-0'
           }`}
         >

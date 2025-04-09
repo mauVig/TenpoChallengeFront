@@ -15,7 +15,7 @@ export interface HomeData {
 
 export const useReadApi = () => {
     const [data, setData] = useState<HomeData[]>([])
-    const [lastIndex, setLastIndex] = useState(0)
+    const [lastIndex, setLastIndex] = useState<number>(0)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +29,10 @@ export const useReadApi = () => {
             })
         };
         fetchData()
-
+        
+        if(data.length === 0) {
+            fetchData()
+        }
         return () => {
             setData([]) 
             setLastIndex(0) 
@@ -46,5 +49,6 @@ export const useReadApi = () => {
             console.error(error)
         })
     }
+    
     return { data, lastIndex, getMoreData }
 }

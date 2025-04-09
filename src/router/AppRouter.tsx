@@ -1,3 +1,4 @@
+import ChangePass from "../private/page/ChangePass";
 import { Home } from "../private/page/Home";
 import Login from "../public/page/Login"
 import { Routes, Route } from 'react-router-dom';
@@ -10,8 +11,9 @@ export const AppRouter = () => {
             <Routes>
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Home />} />
+                <Route path='/changePass' element={<ChangePass />} />
             </Routes>
-            
+            {/* <ChangePass /> */}
         </>
     )
 }
